@@ -4,7 +4,8 @@
     --accent: #38bdf8;
     /* Biru Langit sebagai aksen utama */
     --accent-glow: rgba(56, 189, 248, 0.3);
-    --gold: #f472b6; /* Pink lembut sebagai warna sekunder */
+    --gold: #f472b6;
+    /* Pink lembut sebagai warna sekunder */
     --text: #2c3e50;
     /* Warna font gelap untuk latar putih */
     --text-muted: #596a7a;
@@ -80,14 +81,14 @@ h4,
     letter-spacing: 6px;
     color: var(--gold);
     margin-bottom: 1.5rem;
-    text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.8);
     font-weight: 700;
 }
 
 .names {
     font-size: 5.5rem;
     color: var(--accent);
-    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.8);
+    text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.8);
     margin-bottom: 1.5rem;
     line-height: 1.2;
 }
@@ -160,12 +161,12 @@ h4,
 /* --- STICKERS --- */
 .sticker {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     z-index: 5;
     /* Memberikan efek bayangan lembut agar stiker terlihat menempel alami */
-    filter: drop-shadow(0 8px 15px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.2));
     transition: transform 0.3s ease;
 }
 
@@ -173,20 +174,20 @@ h4,
    namun CSS posisinya sudah disiapkan. */
 
 .sticker-top-right {
-    top: -25px;
-    right: -25px;
+    top: -35px;
+    right: -35px;
     transform: rotate(15deg);
 }
 
 .sticker-top-left {
-    top: -25px;
-    left: -25px;
+    top: -35px;
+    left: -35px;
     transform: rotate(-15deg);
 }
 
 .sticker-bottom-right {
-    bottom: -25px;
-    right: -25px;
+    bottom: -35px;
+    right: -35px;
     transform: rotate(-10deg);
 }
 
@@ -432,7 +433,7 @@ h4,
 }
 
 .btn-submit:hover {
-    background: #1e663e;
+    background: #e971dd;
 }
 
 .btn-download {
@@ -505,6 +506,59 @@ h4,
     color: var(--accent);
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* --- MUSIC BUTTON --- */
+.music-btn {
+    position: fixed;
+    bottom: 90px;
+    /* Di atas navbar mobile */
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    animation: pulse-music 2s infinite;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+}
+
+.music-btn.paused {
+    animation: none;
+    background: var(--text-muted);
+}
+
+@keyframes pulse-music {
+    0% {
+        box-shadow: 0 0 0 0 var(--accent-glow);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(56, 189, 248, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+    }
+}
+
+@media (min-width: 769px) {
+    .music-btn {
+        bottom: 30px;
+        /* Posisi lebih rendah di PC karena tidak ada navbar bawah */
+    }
 }
 
 /* --- FOOTER --- */

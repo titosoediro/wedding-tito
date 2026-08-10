@@ -28,8 +28,11 @@
                 onerror="this.style.display='none';">
 
             <h4 class="wedding-of">THE WEDDING OF</h4>
-            <h1 class="names">Tanjiro <span class="and">&</span> Kanao</h1>
+            <h1 class="names">Tito <span class="and">&</span> Unknown</h1>
             <p class="date">Minggu, 20 Agustus 2026</p>
+
+            <button class="btn btn-submit" type="button" onclick="scrollToSection('couple')">Buka Undangan <i
+                    class="fa-solid fa-arrow-down"></i></button>
         </div>
         <div class="scroll-indicator">
             <span>Scroll untuk melihat</span>
@@ -73,13 +76,13 @@
                 <p>Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami
                     merangkaikan kasih sayang yang Kau ciptakan di antara putra-putri kami:</p>
 
-                <h3 class="bride-name">Tanjiro Kamado</h3>
-                <p class="parents">Putra Pertama dari Bapak Tanjuro Kamado & Ibu Kie Kamado</p>
+                <h3 class="bride-name">Tito Soediro</h3>
+                <p class="parents">Putra Pertama dari Bapak Fulan & Ibu Fulanah</p>
 
                 <span class="and-small">&</span>
 
-                <h3 class="groom-name">Kanao Tsuyuri</h3>
-                <p class="parents">Putri Angkat dari Kediaman Kupu-kupu (Shinobu Kocho)</p>
+                <h3 class="groom-name">Cooming Soon</h3>
+                <p class="parents">Putri Angkat dari Fulan & Fulanah</p>
             </div>
         </div>
     </section>
@@ -172,6 +175,18 @@
     <footer>
         <p>Made with ❤️ | Demon Slayer Wedding Theme</p>
     </footer>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <!-- Ganti src dengan path lagu Anda, misalnya assets/backsound.mp3 -->
+        <source src="assets/Raim Laode - Lesung Pipi.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Music Button -->
+    <button id="music-btn" class="music-btn">
+        <i class="fa-solid fa-music"></i>
+    </button>
 
     <!-- Bottom Navbar (Mobile) -->
     <nav class="bottom-navbar">

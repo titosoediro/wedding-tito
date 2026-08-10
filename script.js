@@ -42,6 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    window.scrollToSection = function(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     // --- LOGIKA RSVP (Simpan JSON Lokal) ---
     // Karena ini web statis tanpa server (di Git), kita menyimpan data secara lokal di browser
     // dan menyediakan tombol untuk export/download ke file JSON.
@@ -112,4 +119,70 @@ document.addEventListener('DOMContentLoaded', () => {
             URL.revokeObjectURL(url);
         });
     }
+
+    // --- BACKGROUND MUSIC LOGIC ---
+    const bgMusic = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    const musicIcon = musicBtn ? musicBtn.querySelector('i') : null;
+    let isPlaying = false;
+
+    function toggleMusic() {
+        if (!bgMusic || !musicBtn) return;
+
+        if (isPlaying) {
+            bgMusic.pause();
+            if (musicIcon) {
+                musicIcon.classList.remove('fa-music');
+                musicIcon.classList.add('fa-play');
+            }
+            musicBtn.classList.add('paused');
+            isPlaying = false;
+        } else {
+            bgMusic.play().then(() => {
+                if (musicIcon) {
+                    musicIcon.classList.remove('fa-play');
+                    musicIcon.classList.add('fa-music');
+                }
+                musicBtn.classList.remove('paused');
+                isPlaying = true;
+            }).catch(error => {
+                console.log("Gagal memutar musik: Pengguna harus berinteraksi dengan layar terlebih dahulu.");
+            });
+        }
+    }
+
+    if (musicBtn) {
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Mencegah memicu klik dokumen ganda
+            toggleMusic();
+        });
+    }
+
+    // Autoplay musik saat ada interaksi sentuh/klik pertama dari user 
+    const startMusicOnInteraction = () => {
+        if (!isPlaying && bgMusic) {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                if (musicIcon) {
+                    musicIcon.classList.remove('fa-play');
+                    musicIcon.classList.add('fa-music');
+                }
+                if (musicBtn) {
+                    musicBtn.classList.remove('paused');
+                }
+                // Hapus event listener jika musik sudah berhasil berputar
+                document.removeEventListener('click', startMusicOnInteraction);
+                document.removeEventListener('touchstart', startMusicOnInteraction);
+                document.removeEventListener('scroll', startMusicOnInteraction);
+            }).catch(error => {
+                // Browser memblokir karena belum ada interaksi valid (misal: scroll).
+                // Jangan hapus listener, biarkan menunggu klik selanjutnya.
+            });
+        }
+    };
+
+    // Tambahkan kembali trigger scroll sesuai permintaan
+    document.addEventListener('click', startMusicOnInteraction);
+    document.addEventListener('touchstart', startMusicOnInteraction);
+    document.addEventListener('scroll', startMusicOnInteraction);
 });

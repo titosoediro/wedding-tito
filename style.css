@@ -23,11 +23,17 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     font-family: 'Outfit', sans-serif;
     background-color: var(--primary);
     color: var(--text);
     overflow-x: hidden;
+    max-width: 100vw;
     line-height: 1.6;
     /* Optional: Memberikan tekstur titik sangat tipis */
     background-image: radial-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px);
@@ -616,11 +622,36 @@ footer {
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     .names {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
     }
 
     .names .and {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
+    }
+
+    .bride-name, .groom-name {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .glass-card {
+        padding: 2rem 1rem;
+    }
+
+    .sticker {
+        width: 80px;
+        height: 80px;
+    }
+
+    .sticker-top-right, .sticker-bottom-right {
+        right: -10px;
+    }
+
+    .sticker-top-left {
+        left: -10px;
     }
 
     .couple-container {
